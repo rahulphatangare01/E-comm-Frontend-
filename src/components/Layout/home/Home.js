@@ -1,6 +1,7 @@
 import React from "react";
 import './Home.css';
 import Product from "../product/Product";
+import MetaData from "../metadata/MetaData";
 const Home =()=>{
 
     const product = {
@@ -11,6 +12,7 @@ const Home =()=>{
     }
     return(
         <>
+        <MetaData title="ECOMMERCE APP" />
             <div className="banner">
             <p> Welcome to Ecommerce</p>
             <h1> FIND AMAZING PRODUCTS BELOW</h1>
