@@ -1,15 +1,24 @@
-import React from "react";
+import {useEffect} from "react";
 import './Home.css';
 import Product from "../product/Product";
 import MetaData from "../metadata/MetaData";
-const Home =()=>{
+import {getProduct} from '../../../actions/productAction';
+import {useSelector, useDispatch} from 'react-redux';
 
-    const product = {
-        name:'Blue Tshirt',
-        images:[{url:'https://i.ibb.co/DRST11n/1.webp'}],
-        price:'$300',
-        _id:"rahul"
-    }
+const product = {
+    name:'Blue Tshirt',
+    images:[{url:'https://i.ibb.co/DRST11n/1.webp'}],
+    price:'$300',
+    _id:"rahul"
+}
+
+const Home =()=>{
+   const dispatch = useDispatch();
+    
+   useEffect(()=>{
+dispatch(getProduct());
+   },[dispatch])
+
     return(
         <>
         <MetaData title="ECOMMERCE APP" />
