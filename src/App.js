@@ -10,6 +10,7 @@ function App() {
   <Router>
 
     <Route  extract path='/' component={Home} />
+
     <Header/>
     <Footer/>
   </Router>
