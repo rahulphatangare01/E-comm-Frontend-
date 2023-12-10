@@ -1,30 +1,36 @@
 import './App.css';
-import {BrowserRouter as Router, Route ,Switch} from "react-router-dom"
+import {BrowserRouter as Router, Route, Redirect} from "react-router-dom"
 import Header from './components/Layout/header/Header';
 import Footer from './components/Layout/footer/Footer';
-import Home from './components/Home/Home';
+import Home from './components/Home/Home.js';
 import ProductDetails from './components/Product/ProductDetails';
-import { Fragment } from 'react';
-// import Contact from './components/Layout/Contact/Contact';
+import Aboutus from './components/Layout/Aboutus/Aboutus';
+ import Contact from './components/Layout/Contact/Contact';
 
 
 function App() {
   return (
-  <Fragment>
-
-  <Router>
-  <Header/>
-
-
-
-  <Route  extract path='/' component={Home}/>
-
-
-  <Route  path='/product/:id' component={ProductDetails}/>
   
-  <Footer/>
-  </Router>
-  </Fragment>
+
+  // <Router>
+  // <Header/>
+  //  <Route  extract path='/home' component={Home}/>
+  // <Route  path='/product/:id' component={ProductDetails}/>
+  //  <Route  extract path='/aboutus' component={Aboutus}/>
+  //  <Route  extract path='/contact' component={Contact}/>
+  // <Footer/>
+  // </Router>
+  <Router>
+  <Header />
+  <Route exact path="/">
+    <Redirect to="/home" />
+  </Route>
+  <Route exact path="/home" component={Home} />
+  <Route path="/product/:id" component={ProductDetails} />
+  <Route exact path="/aboutus" component={Aboutus} />
+  <Route exact path="/contact" component={Contact} />
+  <Footer />
+</Router>
   )
 }
 
