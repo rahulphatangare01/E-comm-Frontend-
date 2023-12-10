@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css'
 function Header() {
   return (
@@ -20,7 +21,7 @@ function Header() {
         <li className="nav-item">
           <a className="nav-link" href="#">About-us</a>
         </li> <li className="nav-item">
-          <a className="nav-link" href="#">Contact</a>
+          <Link className="nav-link" to="/contact">Contact</Link>
         </li>   
       </ul>
       <div className="d-flex" role="search">
