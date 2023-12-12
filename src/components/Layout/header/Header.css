@@ -1,3 +1,13 @@
 .nav-background{
-background-color: #e3f2fd !important;
+background-color: #080a0c !important;
+color: white !important;
+/* background-color: #e3f2fd !important; */
+}
+
+.nav-link{
+    color: white !important;
+}
+
+.navbar-brand{
+    color: white !important;
 }
