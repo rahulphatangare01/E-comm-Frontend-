@@ -19,7 +19,7 @@ const Home =()=>{
         return alert.error(error)
     }
 dispatch(getProduct());
-   },[dispatch, error, alert  ])
+   },[dispatch, error, alert])
 
     return(
     <Fragment>
