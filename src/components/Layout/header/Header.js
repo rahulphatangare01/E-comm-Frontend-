@@ -13,10 +13,10 @@ function Header() {
     <div className="collapse navbar-collapse" id="navbarScroll">
       <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
+          <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Products</a>
+          <Link className="nav-link" to='/products'>Products</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/aboutus">About-us</Link>
@@ -25,7 +25,9 @@ function Header() {
         </li>   
       </ul>
       <div className="d-flex" role="search">
-        <i className="fa-solid fa-magnifying-glass me-5"></i>
+       <Link to='/search'>
+       <i className="fa-solid fa-magnifying-glass me-5"></i>
+       </Link> 
         <i className="fa-regular fa-user me-5"></i>
         <i className="fa-solid fa-cart-shopping me-5"></i>
       </div>

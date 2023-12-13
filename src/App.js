@@ -5,7 +5,9 @@ import Footer from './components/Layout/footer/Footer';
 import Home from './components/Home/Home.js';
 import ProductDetails from './components/Product/ProductDetails';
 import Aboutus from './components/Layout/Aboutus/Aboutus';
- import Contact from './components/Layout/Contact/Contact';
+import Contact from './components/Layout/Contact/Contact';
+import Products from './components/Product/Products.js';
+import Search from './components/Product/Search.js';
 
 
 function App() {
@@ -27,6 +29,10 @@ function App() {
   </Route>
   <Route exact path="/home" component={Home} />
   <Route path="/product/:id" component={ProductDetails} />
+  <Route path="/products" component={Products} />
+  <Route path="/search" component={Search} />
+
+
   <Route exact path="/aboutus" component={Aboutus} />
   <Route exact path="/contact" component={Contact} />
   <Footer />
