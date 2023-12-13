@@ -28,9 +28,11 @@ function App() {
     <Redirect to="/home" />
   </Route>
   <Route exact path="/home" component={Home} />
-  <Route path="/product/:id" component={ProductDetails} />
-  <Route path="/products" component={Products} />
-  <Route path="/search" component={Search} />
+  <Route exact path="/product/:id" component={ProductDetails} />
+  <Route exact path="/products" component={Products} />
+  <Route path="/products/:keyword" component={Products} />
+
+  <Route exact path="/search" component={Search} />
 
 
   <Route exact path="/aboutus" component={Aboutus} />

@@ -6,14 +6,19 @@ import Loader from '../Layout/Loader/Loader';
 import ProductCard from '../Home/ProductCard';
 
 
-const Products =()=>{
-
+const Products =({match})=>{
+  console.log(match, 'matchhhhhessss')
     const dispatch = useDispatch();
 
-const {products, loading,error, productsCount } = useSelector((state) => state.products)
+    const {products, loading, error, productsCount } = useSelector((state) => state.products);
+
+    const keyword = match.params.keyword;
+     
+
+
     useEffect(()=>{
-        dispatch(getProduct())
-    }, [dispatch])
+        dispatch(getProduct(keyword))
+    }, [dispatch ,keyword])
     return (
       <Fragment>
         {
