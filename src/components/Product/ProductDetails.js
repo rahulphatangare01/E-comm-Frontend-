@@ -2,19 +2,26 @@ import React, { Fragment, useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import './ProductDetails.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductDetails } from '../../actions/productAction';
+import { clearError, getProductDetails } from '../../actions/productAction';
 import ReactStars from 'react-rating-stars-component';
-
+import ReviewCard from './ReviewCard'
+import Loader from '../Layout/Loader/Loader';
+import { useAlert } from 'react-alert';
 
 const ProductDetails =({match})=>{
 
-
     const dispatch =useDispatch();
+    const alert = useAlert();
   const {product, loading , error} = useSelector((state)=>state.productDetails);
+  console.log('reivsew', product)
 
     useEffect(()=>{
+        if(error){
+            alert.error(error);
+            dispatch(clearError());
+        }
         dispatch(getProductDetails(match.params.id));
-    },[ dispatch, match.params.id])
+    },[ dispatch, match.params.id, error, alert])
 
     const options = {
         edit:false,
@@ -28,6 +35,8 @@ const ProductDetails =({match})=>{
     return (
 
         <Fragment>
+            {loading? <Loader/> : (
+                <Fragment>
             <div className='ProductDetails'>
             <div>
                 <Carousel>
@@ -75,8 +84,20 @@ const ProductDetails =({match})=>{
                 </div>
                 <button className='submitReview' > Submit Review</button>
             </div>
-
             </div>
+
+            <h3 className='reviewsHeading'> REVIEWS</h3>
+            {
+                product.reviews && product.reviews[0] ? (
+                    <div className='reviews'>
+                        {product.reviews && product.reviews.map((review)=> <ReviewCard review={review}/>)}
+                    </div>
+                ):(
+                    <p className='noReviews'> No Review Yet</p>
+                )
+            }
+        </Fragment>
+            )}
         </Fragment>
     )
 }
