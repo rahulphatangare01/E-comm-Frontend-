@@ -9,13 +9,17 @@ import {
 import Loader from "../Layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
+import Slider from '@mui/material/Slider';
+import { Typography } from "@mui/material";
+  
 
 const Products = ({ match }) => {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState([0,25000])
 
-  const { products, loading, error, productsCount, resultPerPage } =
+  const { products, loading, error, productsCount, resultPerPage ,filtererdProductCount } =
     useSelector((state) => state.products);
 
   const keyword = match.params.keyword;
@@ -23,10 +27,17 @@ const Products = ({ match }) => {
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
+  const priceHandler =(e, newPrice)=>{
+    setPrice(newPrice)
+
+  }
 
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage));
-  }, [dispatch, keyword, currentPage]);
+    dispatch(getProduct(keyword, currentPage, price));
+  }, [dispatch, keyword, currentPage, price]);
+
+  let count = filtererdProductCount;
+  
   return (
     <Fragment>
       {loading ? (
@@ -41,9 +52,22 @@ const Products = ({ match }) => {
                 <ProductCard key={product._id} product={product} />
               ))}
           </div>
-            
+
+          <div className="filterBox">
+          <Typography> Price</Typography>
+          <Slider  
+            value={price}
+            onChange={priceHandler}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            min={0}
+            max={25000}
+          />
+          </div>
+
+
          {
-            resultPerPage < productsCount && (
+            resultPerPage < count && (
                 <div className="paginationBox">
               <Pagination
                 activePage={currentPage}
