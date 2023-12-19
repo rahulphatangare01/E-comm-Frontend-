@@ -86,6 +86,10 @@
     color: rgba(0, 0, 0, 0.623);
 }
 
+.signupForm {
+    transform: translateY(-100%) translateX(-100vmax);
+}
+
 .loginForm > a {
     color: rgba(0, 0, 0, 0.651);
     text-decoration: none;
@@ -96,6 +100,35 @@
 
 .loginForm > a:hover{
     color: black;
+}
+
+#registerImage > img {
+    width: 3vmax;
+    border-radius: 100%;
+
+}
+
+#registerImage > input {
+    display: flex;
+    padding: 0%;
+}
+
+#registerImage > input::file-selector-button{
+ cursor: pointer;
+ width: 100%;
+ z-index: 2;
+ height: 5vh;
+ border: none;
+ margin: 0%;
+ font: 400 0.8vmax "Roboto";
+ transition: all 0.5s;
+ padding: 0 1vmax;
+ color: rgba(0, 0, 0, 0.623);
+ background-color: rgb(255, 255, 255);
+
+}
+#registerImage > input::file-selector-button:hover{
+ background-color: rgb(235, 235, 235);
 }
 
 .loginBtn,

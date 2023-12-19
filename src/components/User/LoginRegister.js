@@ -4,6 +4,8 @@ import Loader from '../Layout/Loader/Loader';
 import { Link } from 'react-router-dom';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';
+import profileImage from '../../Assets/images/Profile.png'
 const LoginRegister = ()=>{
 
      const loginTab = useRef(null);
@@ -13,10 +15,47 @@ const LoginRegister = ()=>{
      const [loginEmail, setLoginEmail] = useState('');
      const [loginPassword, setLoginPassword] = useState('')
 
+     const [user, setUser] = useState({
+        name:'',
+        email:'',
+        password:''
+     });
+
+     const {name, email,password} = user;
+
+     const [avatar,setAvatar ] =useState()
+     const [avatarPreview, setAvatarPreview] = useState(profileImage)
+
 const loginSubmit =()=>{
-        console.log('hello')
+        console.log('login form submit')
 }
 
+const RegisterSubmit =(e)=>{
+        e.preventDefault();
+        const myForm = new FormData()
+        
+        myForm.set('name',name)
+        myForm.set('email',email)
+        myForm.set('password',password)
+        myForm.set('avatar',avatar)
+        console.log('register form submit')  
+}
+
+const registerDataChange =(e)=>{
+    if(e.target.name ===  'avatar'  ){
+        const reader = new FileReader();
+
+        reader.onload = () =>{
+            if(reader.readyState === 2){
+            setAvatarPreview(reader.result);
+            setAvatar(reader.result)
+        }
+    }
+       reader.readAsDataURL(e.target.files[0])
+    } else{
+        setUser({...user, [e.target.name]: e.target.value})
+    }
+}
      const switchTabs =(e, tab)=>{
 
         if(tab === 'login'){
@@ -78,7 +117,65 @@ const loginSubmit =()=>{
             <input  type='submit' value='login' className='loginBtn' />
             </form>
 
-           
+            <form
+            className='signupForm'
+            ref={RegisterTab}
+            encType='multipart/form-data'
+            onSubmit={RegisterSubmit}
+            >
+            <div
+            className='signUpName' >
+            <FaceOutlinedIcon/>
+            <input
+                type='text'
+                placeholder='Name'
+                required
+                name='name'
+                value={name}
+                onChange={registerDataChange}
+            />
+            </div>
+            <div className='signupEmail'>
+            <MailOutlineOutlinedIcon/>
+            <input  
+                type='email'
+                placeholder='Email'
+                required
+                name='email'
+                value={email}
+                onChange={registerDataChange}
+            />
+            </div>
+            <div className='signUpPassword'>
+            <LockOpenOutlinedIcon/>
+            <input 
+                type='password'
+                placeholder='Password'
+                required
+                name='password'
+                value={password}
+                onChange={registerDataChange}
+            />
+            </div>
+            <div id='registerImage'>
+                <img src={avatarPreview} alt='avatar preview ' />
+                <input
+                    type='file'
+                    name='avatar'
+                    accept='image/*'
+                    onChange={registerDataChange}
+                />
+            </div>
+            <input
+                type='submit'
+                value='Register'
+                className='signupBtn'
+                // disabled={loading ? true : false}
+            />
+
+
+
+            </form>
 
         </div>
         </div>
