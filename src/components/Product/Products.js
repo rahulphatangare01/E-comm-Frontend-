@@ -1,18 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  clearError,
-  getProduct,
-  getProductDetails,
-} from "../../actions/productAction";
+import {clearError,getProduct} from "../../actions/productAction";
 import Loader from "../Layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import Slider from '@mui/material/Slider';
 import { Typography } from "@mui/material";
-// import { Category } from "@mui/icons-material";
-  
+import { useAlert } from "react-alert";  
+import MetaData from "../Layout/metadata/MetaData";
 
 const categories = [
     "Laptop",
@@ -26,7 +22,7 @@ const categories = [
 
 const Products = ({ match }) => {
   const dispatch = useDispatch();
-
+const alert = useAlert()
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0,25000]);
   const [category,setCategory] =useState('');
@@ -46,8 +42,13 @@ const Products = ({ match }) => {
   }
 
   useEffect(() => {
+
+    if(error){
+       alert.error(error);
+       dispatch(clearError())
+    }
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
-  }, [dispatch, keyword, currentPage, price, category, ratings]);
+  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
 
   let count = filtererdProductCount;
 
@@ -57,6 +58,7 @@ const Products = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
+        <MetaData title='PRODUCTS -- ECOMMERCE'  />
           <h2 className="productsHeading"> Products</h2>
 
           <div className="products">

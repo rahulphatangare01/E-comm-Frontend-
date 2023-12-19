@@ -28,7 +28,9 @@ function Header() {
        <Link to='/search'>
        <i className="fa-solid fa-magnifying-glass me-5"></i>
        </Link> 
+       <Link to='/login' >
         <i className="fa-regular fa-user me-5"></i>
+       </Link>
         <i className="fa-solid fa-cart-shopping me-5"></i>
       </div>
     </div>

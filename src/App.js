@@ -8,6 +8,7 @@ import Aboutus from './components/Layout/Aboutus/Aboutus';
 import Contact from './components/Layout/Contact/Contact';
 import Products from './components/Product/Products.js';
 import Search from './components/Product/Search.js';
+import LoginRegister from './components/User/LoginRegister.js';
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
   <Route path="/products/:keyword" component={Products} />
 
   <Route exact path="/search" component={Search} />
-
+  <Route  exact path="/login" component={LoginRegister}  />
 
   <Route exact path="/aboutus" component={Aboutus} />
   <Route exact path="/contact" component={Contact} />
