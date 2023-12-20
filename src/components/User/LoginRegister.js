@@ -5,8 +5,13 @@ import { Link } from 'react-router-dom';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';
-import profileImage from '../../Assets/images/Profile.png'
+import profileImage from '../../Assets/images/Profile.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearErrors , login } from '../../actions/userAction';
+
 const LoginRegister = ()=>{
+    const dispatch = useDispatch();
+
 
      const loginTab = useRef(null);
      const RegisterTab = useRef(null);
@@ -26,7 +31,9 @@ const LoginRegister = ()=>{
      const [avatar,setAvatar ] =useState()
      const [avatarPreview, setAvatarPreview] = useState(profileImage)
 
-const loginSubmit =()=>{
+const loginSubmit =(e)=>{
+    e.preventDefault();
+    dispatch(login(loginEmail, loginPassword))
         console.log('login form submit')
 }
 
